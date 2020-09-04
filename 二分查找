@@ -1,0 +1,24 @@
+class Solution:
+    def upper_bound_(self , n , v , a ):
+        # write code here
+        a.sort()
+        left = 0
+        right = len(a)-1
+        if a[left] >= v:
+            return 1
+        elif a[right] < v:
+            return n+1
+        else:
+            while left <= right:
+                mid = (right + left) // 2
+                if a[mid] == v:
+                    while a[mid - 1] == a[mid]:
+                        mid = mid -1
+                    else:
+                        return mid+1
+                elif a[mid] < v:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            else:
+                return left+1
